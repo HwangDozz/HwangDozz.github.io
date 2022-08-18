@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Hwang&#39;s Blogs</title>
+  <icon>https://www.gravatar.com/avatar/3c3b69f0ef3fc038483111a5b9234b8e</icon>
   
+  <link href="http://hwang.tech/atom.xml" rel="self"/>
   
-  <link href="http://example.com/atom.xml" rel="self"/>
-  
-  <link href="http://example.com/"/>
+  <link href="http://hwang.tech/"/>
   <updated>2022-08-18T05:42:38.925Z</updated>
-  <id>http://example.com/</id>
+  <id>http://hwang.tech/</id>
   
   <author>
     <name>Hwang Dozz</name>
-    
+    <email>1845930603@qq.com</email>
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2022/08/18/hello-world/"/>
-    <id>http://example.com/2022/08/18/hello-world/</id>
+    <link href="http://hwang.tech/2022/08/18/hello-world/"/>
+    <id>http://hwang.tech/2022/08/18/hello-world/</id>
     <published>2022-08-18T05:42:38.925Z</published>
     <updated>2022-08-18T05:42:38.925Z</updated>
     
