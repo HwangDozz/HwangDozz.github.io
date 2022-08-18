@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hwang&#39;s Blogs</title>
+  <title>Hwang</title>
   <icon>https://www.gravatar.com/avatar/3c3b69f0ef3fc038483111a5b9234b8e</icon>
   
   <link href="http://hwang.tech/atom.xml" rel="self"/>
