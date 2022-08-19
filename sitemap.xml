@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hwang.tech/2022/08/19/Ubuntu%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2022-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://hwang.tech/2022/08/18/hello-world/</loc>
     
     <lastmod>2022-08-18</lastmod>
@@ -13,7 +22,7 @@
 
   <url>
     <loc>http://hwang.tech/</loc>
-    <lastmod>2022-08-18</lastmod>
+    <lastmod>2022-08-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
