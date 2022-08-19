@@ -1,3 +1,6 @@
+http://hwang.tech/2022/08/19/Linux%E5%AE%89%E8%A3%85tomcat/
+http://hwang.tech/2022/08/19/tomcat%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6/
+http://hwang.tech/2022/08/19/tomcat%E7%9A%84%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/
 http://hwang.tech/2022/08/19/Ubuntu%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/
 http://hwang.tech/2022/08/18/hello-world/
 http://hwang.tech/

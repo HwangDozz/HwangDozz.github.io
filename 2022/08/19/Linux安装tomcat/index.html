@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hwang.tech","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Linux安装tomcat下载tomcat打开tomcat下载页面，tomcat9下载页面，找到合适的版本下载：   linux系统选择 tar.gz 结尾的安装包，这里我选择较稳定的tomcat9版本 上传到服务器 推荐用 xftp 工具上传，可以一键上传  也可以用powershell指令上传（进入到压缩包所在的文件夹）   1scp apache-tomcat-9.0.65.tar.gz a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安装tomcat">
+<meta property="og:url" content="http://hwang.tech/2022/08/19/Linux%E5%AE%89%E8%A3%85tomcat/index.html">
+<meta property="og:site_name" content="Hwang">
+<meta property="og:description" content="Linux安装tomcat下载tomcat打开tomcat下载页面，tomcat9下载页面，找到合适的版本下载：   linux系统选择 tar.gz 结尾的安装包，这里我选择较稳定的tomcat9版本 上传到服务器 推荐用 xftp 工具上传，可以一键上传  也可以用powershell指令上传（进入到压缩包所在的文件夹）   1scp apache-tomcat-9.0.65.tar.gz a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/BlogDir/blog/source/images/Linux安装tomcat/image-20220819122153142.png">
+<meta property="og:image" content="f:/BlogDir/blog/source/images/Linux安装tomcat/image-20220819132958875.png">
+<meta property="article:published_time" content="2022-08-19T06:20:03.000Z">
+<meta property="article:modified_time" content="2022-08-19T06:30:55.574Z">
+<meta property="article:author" content="Hwang Dozz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/BlogDir/blog/source/images/Linux安装tomcat/image-20220819122153142.png">
+
+<link rel="canonical" href="http://hwang.tech/2022/08/19/Linux%E5%AE%89%E8%A3%85tomcat/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Ubuntu安装tomcat | Hwang</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hwang" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hwang</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://hwang.tech/2022/08/19/Linux%E5%AE%89%E8%A3%85tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="Hwang Dozz">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hwang">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu安装tomcat
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-19 14:20:03 / 修改时间：14:30:55" itemprop="dateCreated datePublished" datetime="2022-08-19T14:20:03+08:00">2022-08-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Linux安装tomcat"><a href="#Linux安装tomcat" class="headerlink" title="Linux安装tomcat"></a>Linux安装tomcat</h2><h4 id="下载tomcat"><a href="#下载tomcat" class="headerlink" title="下载tomcat"></a>下载tomcat</h4><p>打开tomcat下载页面，<a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-90.cgi">tomcat9下载页面</a>，找到合适的版本下载：</p>
+<img src="F:\BlogDir\blog\source\images\Linux安装tomcat\image-20220819122153142.png" alt="image-20220819122153142" style="zoom: 80%;" />
+
+<p>linux系统选择 tar.gz 结尾的安装包，这里我选择较稳定的tomcat9版本</p>
+<h4 id="上传到服务器"><a href="#上传到服务器" class="headerlink" title="上传到服务器"></a>上传到服务器</h4><ul>
+<li><p>推荐用 xftp 工具上传，可以一键上传</p>
+</li>
+<li><p>也可以用powershell指令上传（进入到压缩包所在的文件夹）</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp apache-tomcat-9.0.65.tar.gz anyone@1.15.67.109:/home/anyone/resources/ 			#后面的路径任意</span><br></pre></td></tr></table></figure>
+
+<h4 id="解压tomcat到当前目录"><a href="#解压tomcat到当前目录" class="headerlink" title="解压tomcat到当前目录"></a>解压tomcat到当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-9.0.65.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h4 id="启动tomcat"><a href="#启动tomcat" class="headerlink" title="启动tomcat"></a>启动tomcat</h4><p>进入到bin目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/anyone/resources/apache-tomcat-9.0.65/bin</span><br></pre></td></tr></table></figure>
+
+<p>启动tomcat</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+
+<p>输出以下内容则表示启动成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Using CATALINA_BASE:   /home/anyone/resources/apache-tomcat-9.0.65</span><br><span class="line">Using CATALINA_HOME:   /home/anyone/resources/apache-tomcat-9.0.65</span><br><span class="line">Using CATALINA_TMPDIR: /home/anyone/resources/apache-tomcat-9.0.65/temp</span><br><span class="line">Using JRE_HOME:        /usr</span><br><span class="line">Using CLASSPATH:       /home/anyone/resources/apache-tomcat-9.0.65/bin/bootstrap.jar:/home/anyone/resources/apache-tomcat-9.0.65/bin/tomcat-juli.jar</span><br><span class="line">Using CATALINA_OPTS:   </span><br><span class="line">Tomcat started.</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志输出检验是否启动成功"><a href="#日志输出检验是否启动成功" class="headerlink" title="日志输出检验是否启动成功"></a>日志输出检验是否启动成功</h4><p>访问安装目录，打印标准错误日志，检查有无error：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat apache-tomcat-9.0.65/logs/catalina.out</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>若有error，请检查一下错误内容，若有java相关信息，大半是java没有安装好，包括环境变量的配置和java默认版本的选择，重新安装配置一下java就可以解决问题。</strong></p>
+<h4 id="进程输出检查是否正常启动"><a href="#进程输出检查是否正常启动" class="headerlink" title="进程输出检查是否正常启动"></a>进程输出检查是否正常启动</h4><p>输出以下内容表示启动成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">anyone     882 32444  0 13:30 pts/2    00:00:00 grep --color=auto tomcat</span><br><span class="line">anyone   24542     1  0 12:31 pts/0    00:00:11 /usr/bin/java -Djava.util.logging.config.file=/home/anyone/resources/apache-tomcat-9.0.65/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /home/anyone/resources/apache-tomcat-9.0.65/bin/bootstrap.jar:/home/anyone/resources/apache-tomcat-9.0.65/bin/tomcat-juli.jar -Dcatalina.base=/home/anyone/resources/apache-tomcat-9.0.65 -Dcatalina.home=/home/anyone/resources/apache-tomcat-9.0.65 -Djava.io.tmpdir=/home/anyone/resources/apache-tomcat-9.0.65/temp org.apache.catalina.startup.Bootstrap start</span><br></pre></td></tr></table></figure>
+
+<h4 id="访问-x-x-x-x-8080端口"><a href="#访问-x-x-x-x-8080端口" class="headerlink" title="访问 x.x.x.x:8080端口"></a>访问 x.x.x.x:8080端口</h4><p>出现页面则表示正常启动：</p>
+<img src="F:\BlogDir\blog\source\images\Linux安装tomcat\image-20220819132958875.png" alt="image-20220819132958875" style="zoom: 67%;" />
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/19/Ubuntu%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83/" rel="prev" title="Ubuntu配置java环境">
+      <i class="fa fa-chevron-left"></i> Ubuntu配置java环境
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/19/tomcat%E7%9A%84%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/" rel="next" title="tomcat的日志配置">
+      tomcat的日志配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E5%AE%89%E8%A3%85tomcat"><span class="nav-number">1.</span> <span class="nav-text">Linux安装tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDtomcat"><span class="nav-number">1.0.1.</span> <span class="nav-text">下载tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.0.2.</span> <span class="nav-text">上传到服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8Btomcat%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95"><span class="nav-number">1.0.3.</span> <span class="nav-text">解压tomcat到当前目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8tomcat"><span class="nav-number">1.0.4.</span> <span class="nav-text">启动tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E6%A3%80%E9%AA%8C%E6%98%AF%E5%90%A6%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F"><span class="nav-number">1.0.5.</span> <span class="nav-text">日志输出检验是否启动成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%BE%93%E5%87%BA%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8%E5%90%AF%E5%8A%A8"><span class="nav-number">1.0.6.</span> <span class="nav-text">进程输出检查是否正常启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE-x-x-x-x-8080%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.0.7.</span> <span class="nav-text">访问 x.x.x.x:8080端口</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hwang Dozz"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">Hwang Dozz</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hwang Dozz</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
