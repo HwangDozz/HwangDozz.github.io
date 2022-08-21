@@ -217,7 +217,7 @@
 <p><img src="/../images/tomcat%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6/image-20220819133704691.png"></p>
 <p>点击右上角Manager App，出现403 Access Denied，原因是服务器上的tomcat没有开放远程访问的权限，此时需要修改tomcat的配置文件以开放此权限。</p>
 <p><img src="/../images/tomcat%E9%83%A8%E7%BD%B2%E6%8F%92%E4%BB%B6/image-20220819133821895.png"></p>
-<h4 id="修改tomcat登录配置文件"><a href="#修改tomcat登录配置文件" class="headerlink" title="修改tomcat登录配置文件"></a>修改tomcat登录配置文件</h4><p>回到 tomcat 安装目录，进入 conf 目录，打开 tomcat-users.xml 文件，在 <tomcat-users> 标签下，添加如下配置：</tomcat-users></p>
+<h4 id="修改tomcat登录配置文件"><a href="#修改tomcat登录配置文件" class="headerlink" title="修改tomcat登录配置文件"></a>修改tomcat登录配置文件</h4><p>回到 tomcat 安装目录，进入 conf 目录，打开 tomcat-users.xml 文件，在 <tomcat-users> 标签下，添加如下配置：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">&quot;manager-gui&quot;</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">&quot;root&quot;</span> <span class="attr">password</span>=<span class="string">&quot;root&quot;</span> <span class="attr">roles</span>=<span class="string">&quot;manager-gui&quot;</span>/&gt;</span>  # 用户名和密码自行设定</span><br></pre></td></tr></table></figure>
 
 <p>重启tomcat服务：</p>
@@ -273,7 +273,10 @@
     <a href="/2022/08/19/tomcat%E7%9A%84%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE/" rel="prev" title="tomcat的日志配置">
       <i class="fa fa-chevron-left"></i> tomcat的日志配置
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/21/Ubuntu%E5%AE%89%E8%A3%85Redis/" rel="next" title="Ubuntu安装Redis">
+      Ubuntu安装Redis <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -348,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
